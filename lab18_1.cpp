@@ -5,8 +5,16 @@ struct Rect{
 	double x,y,w,h;
 };
 
-double overlap(){
+double overlap(Rect a, Rect b) {
+	double x_overlap = max(0.0, min(a.x + a.w, b.x + b.w) - max(a.x, b.x));
+    double y_overlap = max(0.0, min(a.y, b.y) - max(a.y - a.h, b.y - b.h)); 
 
+    return x_overlap * y_overlap; 
+}
 
-
+int main()
+{
+	Rect R1 = {-1,2,6.9,9.6};
+	Rect R2 = {0,0,1.2,2.5};	
+	cout << overlap(R1,R2);	
 }
